@@ -1,0 +1,72 @@
+import Link from "next/link";
+import Image from "next/image";
+import { statusLabel, type Project } from "@/data/projects";
+
+const statusStyle: Record<Project["status"], string> = {
+  live: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  wip: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
+  archived: "bg-zinc-500/10 text-fg-subtle",
+};
+
+export function ProjectCard({ project }: { project: Project }) {
+  return (
+    <article className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-bg-card transition-colors hover:border-accent/50">
+      <div className="relative aspect-[16/9] overflow-hidden bg-bg-subtle">
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt=""
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <PlaceholderArt title={project.title} />
+        )}
+      </div>
+
+      <div className="flex flex-1 flex-col gap-3 p-5">
+        <div className="flex items-center gap-2">
+          <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusStyle[project.status]}`}>
+            {statusLabel[project.status]}
+          </span>
+          <span className="font-mono text-xs text-fg-subtle">{project.year}</span>
+        </div>
+
+        <h3 className="text-lg font-semibold tracking-tight">
+          <Link href={`/projects/${project.slug}`} className="after:absolute after:inset-0">
+            {project.title}
+          </Link>
+        </h3>
+
+        <p className="flex-1 text-sm leading-relaxed text-fg-muted">{project.summary}</p>
+
+        <ul className="flex flex-wrap gap-1.5 pt-1">
+          {project.tech.slice(0, 4).map((t) => (
+            <li key={t} className="rounded-md bg-bg-subtle px-2 py-1 font-mono text-xs text-fg-muted">
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </article>
+  );
+}
+
+/** Ảnh gradient sinh sẵn cho project chưa có screenshot. */
+function PlaceholderArt({ title }: { title: string }) {
+  const hue = [...title].reduce((acc, c) => acc + c.charCodeAt(0), 0) % 360;
+  return (
+    <div
+      className="grid size-full place-items-center"
+      style={{
+        background: `linear-gradient(135deg, hsl(${hue} 70% 60% / 0.25), hsl(${(hue + 60) % 360} 70% 50% / 0.15))`,
+      }}
+      aria-hidden="true"
+    >
+      <span className="font-mono text-3xl font-bold text-fg/25">
+        {title.slice(0, 2).toUpperCase()}
+      </span>
+    </div>
+  );
+}
