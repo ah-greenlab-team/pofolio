@@ -57,25 +57,36 @@ Mở `src/data/projects.ts` và thêm một object vào mảng `projects`:
 
 ```ts
 {
-  slug: "ten-app",            // quyết định URL: /projects/ten-app
-  title: "Tên App",
-  summary: "Mô tả ngắn hiện trên card.",
-  description: ["Đoạn mô tả chi tiết thứ nhất.", "Đoạn thứ hai."],
+  slug: "ten-app",            // quyết định URL: /vi/projects/ten-app
+  title: "Tên App",           // tên app giữ nguyên ở cả hai ngôn ngữ
+  summary: {
+    vi: "Mô tả ngắn hiện trên card.",
+    en: "Short description shown on the card.",
+  },
+  description: {
+    vi: ["Đoạn thứ nhất.", "Đoạn thứ hai."],
+    en: ["First paragraph.", "Second paragraph."],
+  },
   tech: ["Kotlin", "Jetpack Compose", "Room"],
   year: "2026",
   status: "live",             // "live" | "wip" | "archived"
   featured: true,             // true = hiện ở trang chủ
   demoUrl: "https://play.google.com/store/apps/details?id=...",  // tuỳ chọn
-  demoLabel: "Xem tài liệu",  // tuỳ chọn, mặc định "Tải trên Google Play"
   repoUrl: "https://github.com/...",  // tuỳ chọn
   downloads: "10K+",                  // tuỳ chọn, số lượt tải trên Play
-  icon: "/projects/ten-app.png",      // tuỳ chọn, icon vuông 512×512
-  image: "/projects/ten-app-cover.png", // tuỳ chọn, ảnh bìa 16:9
-  highlights: ["Điểm nổi bật 1", "Điểm nổi bật 2"],
+  icon: "/app-icons/ten-app.png",     // tuỳ chọn, icon vuông 512×512
+  highlights: {
+    vi: ["Điểm nổi bật 1", "Điểm nổi bật 2"],
+    en: ["Highlight 1", "Highlight 2"],
+  },
 }
 ```
 
-Trang chi tiết tại `/projects/ten-app` được tạo tự động.
+Trang chi tiết tại `/vi/projects/ten-app` và `/en/projects/ten-app` được tạo tự động.
+
+> Ảnh của app phải đặt trong `public/app-icons/`, **không** đặt trong
+> `public/projects/` — đường dẫn `/projects/...` đang có redirect sang bản
+> tiếng Việt nên file tĩnh nằm ở đó sẽ bị redirect và hỏng ảnh khi deploy.
 
 ### Thêm bài viết blog
 
@@ -123,7 +134,7 @@ Từ lần sau, mỗi lần `git push` là Vercel tự deploy lại.
 ```
 content/blog/vi/       bài viết tiếng Việt
 content/blog/en/       bài viết tiếng Anh
-public/projects/       icon và ảnh của các app
+public/app-icons/       icon và ảnh của các app
 src/app/[lang]/        các route theo ngôn ngữ (trang chủ, /projects, /blog)
 src/app/sitemap.ts     sitemap cho cả hai ngôn ngữ
 src/components/        component dùng chung (Header, Footer, ProjectCard, ...)

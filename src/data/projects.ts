@@ -26,7 +26,7 @@ export type Project = {
   /** Nhãn của nút tải. Bỏ trống sẽ dùng nhãn mặc định theo ngôn ngữ. */
   demoLabel?: Localized;
   repoUrl?: string;
-  /** Icon app vuông đặt trong /public, ví dụ "/projects/app.png". */
+  /** Icon app vuông đặt trong /public, ví dụ "/app-icons/app.png". */
   icon?: string;
   /** Ảnh bìa 16:9 đặt trong /public. Nếu có, sẽ thay cho nền icon làm mờ. */
   image?: string;
@@ -58,7 +58,7 @@ export const projects: Project[] = [
     downloads: "10K+",
     demoUrl:
       "https://play.google.com/store/apps/details?id=ahgreen.fast.unlimited.vpn.unblockproxy.securevpn",
-    icon: "/projects/ah-vpn.png",
+    icon: "/app-icons/ah-vpn.png",
     highlights: {
       vi: [
         "Kết nối một chạm, không cần tài khoản",
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     featured: true,
     downloads: "10K+",
     demoUrl: "https://play.google.com/store/apps/details?id=com.ahgreen.wifi",
-    icon: "/projects/wifi-nearby.png",
+    icon: "/app-icons/wifi-nearby.png",
     highlights: {
       vi: [
         "Bản đồ điểm phát WiFi theo thời gian thực",
@@ -136,7 +136,7 @@ export const projects: Project[] = [
     featured: true,
     downloads: "100+",
     demoUrl: "https://play.google.com/store/apps/details?id=com.ahgreenlab.shimeji",
-    icon: "/projects/shimeji-pet.jpg",
+    icon: "/app-icons/shimeji-pet.jpg",
     highlights: {
       vi: [
         "Hiển thị overlay trên mọi ứng dụng",
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     downloads: "50+",
     demoUrl:
       "https://play.google.com/store/apps/details?id=com.findbluetooth.device.radar",
-    icon: "/projects/bluetooth-device-finder.png",
+    icon: "/app-icons/bluetooth-device-finder.png",
     highlights: {
       vi: [
         "Radar hiển thị thiết bị theo cường độ tín hiệu",
