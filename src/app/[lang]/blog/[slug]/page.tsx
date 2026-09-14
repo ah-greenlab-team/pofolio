@@ -1,40 +1,49 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getAllPosts, getPost, formatDate } from "@/lib/blog";
+import { getPost, getAllPostParams, formatDate } from "@/lib/blog";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale, locales } from "@/i18n/config";
 
-type Params = { params: Promise<{ slug: string }> };
+type Params = { params: Promise<{ lang: string; slug: string }> };
 
 export function generateStaticParams() {
-  return getAllPosts().map((p) => ({ slug: p.slug }));
+  return getAllPostParams(locales);
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) return {};
+  const post = await getPost(lang, slug);
   if (!post) return {};
   return { title: post.title, description: post.description };
 }
 
 export default async function PostPage({ params }: Params) {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) notFound();
+
+  const post = await getPost(lang, slug);
   if (!post) notFound();
+
+  const dict = getDictionary(lang);
 
   return (
     <article className="container-page py-16 sm:py-20">
       <div className="mx-auto max-w-2xl">
         <Link
-          href="/blog"
+          href={`/${lang}/blog`}
           className="inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
         >
-          <span aria-hidden="true">←</span> Tất cả bài viết
+          <span aria-hidden="true">←</span> {dict.blog.backToAll}
         </Link>
       </div>
 
       <header className="mx-auto mt-8 max-w-2xl">
         <div className="flex flex-wrap items-center gap-3">
-          <time className="font-mono text-xs text-fg-subtle">{formatDate(post.date)}</time>
+          <time className="font-mono text-xs text-fg-subtle">
+            {formatDate(post.date, lang)}
+          </time>
           {post.tags.map((tag) => (
             <span
               key={tag}
@@ -57,7 +66,7 @@ export default async function PostPage({ params }: Params) {
       {post.source && (
         <footer className="mx-auto mt-12 max-w-2xl border-t border-border pt-6">
           <p className="text-sm text-fg-muted">
-            Bài viết này được đăng lần đầu trên{" "}
+            {dict.blog.originallyOn}{" "}
             <a
               href={post.source}
               target="_blank"

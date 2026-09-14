@@ -3,23 +3,37 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { nav, site } from "@/data/site";
+import { site } from "@/data/site";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
 
-export function Header() {
+export function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const dict = getDictionary(locale);
+
+  const nav = [
+    { label: dict.nav.home, href: `/${locale}` },
+    { label: dict.nav.projects, href: `/${locale}/projects` },
+    { label: dict.nav.blog, href: `/${locale}/blog` },
+    { label: dict.nav.contact, href: `/${locale}#contact` },
+  ];
 
   function isActive(href: string) {
-    if (href === "/") return pathname === "/";
-    if (href.startsWith("/#")) return false;
+    if (href.includes("#")) return false;
+    if (href === `/${locale}`) return pathname === `/${locale}`;
     return pathname.startsWith(href);
   }
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-bg/80 backdrop-blur-md">
       <div className="container-page flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="font-mono text-sm font-semibold tracking-tight">
+        <Link
+          href={`/${locale}`}
+          className="font-mono text-sm font-semibold tracking-tight"
+        >
           <span className="text-accent">&gt;</span> {site.name}
         </Link>
 
@@ -40,15 +54,23 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <LanguageToggle locale={locale} />
+          <ThemeToggle locale={locale} />
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            aria-label={open ? "Đóng menu" : "Mở menu"}
+            aria-label={open ? dict.nav.closeMenu : dict.nav.openMenu}
             aria-expanded={open}
             className="grid size-9 place-items-center rounded-lg border border-border text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg md:hidden"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="size-[18px]" aria-hidden="true">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.8"
+              className="size-[18px]"
+              aria-hidden="true"
+            >
               {open ? (
                 <path strokeLinecap="round" d="M6 6l12 12M18 6L6 18" />
               ) : (

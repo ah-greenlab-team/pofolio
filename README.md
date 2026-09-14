@@ -23,8 +23,33 @@ Toàn bộ nội dung nằm tách khỏi giao diện — bạn chỉ cần sửa
 | Tên, chức danh, giới thiệu, email, link mạng xã hội | `src/data/site.ts` |
 | Danh sách ứng dụng / dự án | `src/data/projects.ts` |
 | Kỹ năng và kinh nghiệm làm việc | `src/data/experience.ts` |
-| Bài viết blog | thêm file `.md` vào `content/blog/` |
+| Chữ trên giao diện (menu, nút, tiêu đề mục) | `src/i18n/dictionaries.ts` |
+| Bài viết blog | thêm `.md` vào `content/blog/vi/` và `content/blog/en/` |
 | Màu sắc, theme sáng/tối | biến CSS ở đầu `src/app/globals.css` |
+
+## Song ngữ Việt — Anh
+
+Site có hai ngôn ngữ, tiếng Việt là mặc định:
+
+- `/vi` — bản tiếng Việt, `/` tự chuyển về đây
+- `/en` — bản tiếng Anh
+
+Nút **VI / EN** trên thanh điều hướng giữ nguyên trang đang xem, ví dụ
+`/en/projects/ah-vpn` đổi sang `/vi/projects/ah-vpn`.
+
+Trong `src/data/*`, những trường có dạng `{ vi: "...", en: "..." }` sẽ tự hiển thị
+theo ngôn ngữ người xem chọn. Khi thêm nội dung mới, nhớ điền cả hai:
+
+```ts
+summary: {
+  vi: "Mô tả tiếng Việt.",
+  en: "English description.",
+},
+```
+
+Chữ cố định trên giao diện (menu, nút bấm, tiêu đề mục) nằm trong
+`src/i18n/dictionaries.ts`. Muốn thêm ngôn ngữ thứ ba thì bổ sung mã vào
+`src/i18n/config.ts`, thêm một khối từ điển, rồi tạo thư mục blog tương ứng.
 
 ### Thêm một ứng dụng mới
 
@@ -54,7 +79,8 @@ Trang chi tiết tại `/projects/ten-app` được tạo tự động.
 
 ### Thêm bài viết blog
 
-Tạo file mới trong `content/blog/`, ví dụ `content/blog/bai-viet-moi.md`:
+Tạo file mới trong `content/blog/vi/` (và bản dịch trong `content/blog/en/` nếu có),
+ví dụ `content/blog/vi/bai-viet-moi.md`:
 
 ```markdown
 ---
@@ -68,7 +94,10 @@ Nội dung viết bằng Markdown. Hỗ trợ heading, danh sách, bảng,
 code block, blockquote và link.
 ```
 
-Tên file chính là URL: bài trên sẽ nằm ở `/blog/bai-viet-moi`.
+Tên file chính là URL: bài trên sẽ nằm ở `/vi/blog/bai-viet-moi`. Nếu muốn dẫn về
+bản gốc (ví dụ bài đăng trên LinkedIn), thêm `source: "https://..."` vào frontmatter.
+
+Hai ngôn ngữ dùng chung tên file. Bài chỉ có ở một ngôn ngữ thì chỉ hiện ở ngôn ngữ đó.
 
 ## Deploy lên Vercel
 
@@ -92,19 +121,23 @@ Từ lần sau, mỗi lần `git push` là Vercel tự deploy lại.
 ## Cấu trúc thư mục
 
 ```
-content/blog/          bài viết Markdown
-public/projects/       ảnh screenshot của các app
-src/app/               các route (trang chủ, /projects, /blog, sitemap, robots)
+content/blog/vi/       bài viết tiếng Việt
+content/blog/en/       bài viết tiếng Anh
+public/projects/       icon và ảnh của các app
+src/app/[lang]/        các route theo ngôn ngữ (trang chủ, /projects, /blog)
+src/app/sitemap.ts     sitemap cho cả hai ngôn ngữ
 src/components/        component dùng chung (Header, Footer, ProjectCard, ...)
 src/data/              nội dung của site — sửa ở đây
+src/i18n/              cấu hình ngôn ngữ và từ điển giao diện
 src/lib/blog.ts        đọc và render file Markdown
 ```
 
 ## Tính năng có sẵn
 
+- Song ngữ Việt — Anh, nút chuyển giữ nguyên trang đang xem
 - Giao diện sáng/tối, tự theo cài đặt hệ thống và ghi nhớ lựa chọn của người xem
 - Responsive từ điện thoại tới desktop
-- SEO: thẻ Open Graph, `sitemap.xml`, `robots.txt` sinh tự động
+- SEO: thẻ Open Graph, `hreflang` cho hai ngôn ngữ, `sitemap.xml` và `robots.txt` sinh tự động
 - Blog viết bằng Markdown, hỗ trợ bảng và code block
 - Trang 404 riêng, link "bỏ qua tới nội dung" cho người dùng bàn phím
 - Tôn trọng `prefers-reduced-motion`

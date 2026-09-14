@@ -2,52 +2,62 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProject, projects, statusLabel } from "@/data/projects";
+import { getProject, projects } from "@/data/projects";
+import { getDictionary } from "@/i18n/dictionaries";
+import { isLocale, locales, pick } from "@/i18n/config";
 
-type Params = { params: Promise<{ slug: string }> };
+type Params = { params: Promise<{ lang: string; slug: string }> };
 
 export function generateStaticParams() {
-  return projects.map((p) => ({ slug: p.slug }));
+  return locales.flatMap((lang) =>
+    projects.map((p) => ({ lang, slug: p.slug })),
+  );
 }
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
-  const { slug } = await params;
+  const { lang, slug } = await params;
   const project = getProject(slug);
-  if (!project) return {};
-  return { title: project.title, description: project.summary };
+  if (!project || !isLocale(lang)) return {};
+  return { title: project.title, description: pick(project.summary, lang) };
 }
 
 export default async function ProjectPage({ params }: Params) {
-  const { slug } = await params;
+  const { lang, slug } = await params;
+  if (!isLocale(lang)) notFound();
   const project = getProject(slug);
   if (!project) notFound();
+
+  const dict = getDictionary(lang);
 
   return (
     <article className="container-page py-16 sm:py-20">
       <Link
-        href="/projects"
+        href={`/${lang}/projects`}
         className="inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
       >
-        <span aria-hidden="true">←</span> Tất cả ứng dụng
+        <span aria-hidden="true">←</span> {dict.projects.backToAll}
       </Link>
 
       <header className="mt-8 max-w-3xl">
-        <div className="flex items-center gap-3 text-sm text-fg-subtle">
+        <div className="flex flex-wrap items-center gap-3 text-sm text-fg-subtle">
           <span className="font-mono">{project.year}</span>
           <span aria-hidden="true">·</span>
-          <span>{statusLabel[project.status]}</span>
+          <span>{dict.projects.status[project.status]}</span>
           {project.downloads && (
             <>
               <span aria-hidden="true">·</span>
-              <span>{project.downloads} lượt tải trên Google Play</span>
+              <span>
+                {project.downloads} {dict.projects.downloadsOnPlay}
+              </span>
             </>
           )}
         </div>
+
         <div className="mt-3 flex items-center gap-4">
           {project.icon && (
             <Image
               src={project.icon}
-              alt={`Icon ứng dụng ${project.title}`}
+              alt={project.title}
               width={144}
               height={144}
               className="size-16 shrink-0 rounded-[22%] shadow-lg ring-1 ring-black/10 sm:size-20"
@@ -57,7 +67,10 @@ export default async function ProjectPage({ params }: Params) {
             {project.title}
           </h1>
         </div>
-        <p className="mt-4 text-lg leading-relaxed text-fg-muted">{project.summary}</p>
+
+        <p className="mt-4 text-lg leading-relaxed text-fg-muted">
+          {pick(project.summary, lang)}
+        </p>
 
         <div className="mt-6 flex flex-wrap gap-3">
           {project.demoUrl && (
@@ -67,7 +80,9 @@ export default async function ProjectPage({ params }: Params) {
               rel="noreferrer noopener"
               className="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-accent-fg transition-opacity hover:opacity-90"
             >
-              {project.demoLabel ?? "Tải trên Google Play"}
+              {project.demoLabel
+                ? pick(project.demoLabel, lang)
+                : dict.projects.defaultDemoLabel}
             </a>
           )}
           {project.repoUrl && (
@@ -77,7 +92,7 @@ export default async function ProjectPage({ params }: Params) {
               rel="noreferrer noopener"
               className="rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-bg-subtle"
             >
-              Mã nguồn
+              {dict.projects.sourceCode}
             </a>
           )}
         </div>
@@ -91,7 +106,7 @@ export default async function ProjectPage({ params }: Params) {
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.6fr_1fr]">
         <div className="space-y-4 leading-relaxed text-fg-muted">
-          {project.description.map((p) => (
+          {pick(project.description, lang).map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
@@ -99,7 +114,7 @@ export default async function ProjectPage({ params }: Params) {
         <aside className="space-y-8">
           <div>
             <h2 className="mb-3 font-mono text-xs uppercase tracking-widest text-fg-subtle">
-              Công nghệ
+              {dict.projects.tech}
             </h2>
             <ul className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
@@ -113,13 +128,13 @@ export default async function ProjectPage({ params }: Params) {
             </ul>
           </div>
 
-          {project.highlights && project.highlights.length > 0 && (
+          {project.highlights && (
             <div>
               <h2 className="mb-3 font-mono text-xs uppercase tracking-widest text-fg-subtle">
-                Điểm nổi bật
+                {dict.projects.highlights}
               </h2>
               <ul className="space-y-2">
-                {project.highlights.map((h) => (
+                {pick(project.highlights, lang).map((h) => (
                   <li key={h} className="flex gap-2 text-sm text-fg-muted">
                     <span className="text-accent" aria-hidden="true">
                       ▸

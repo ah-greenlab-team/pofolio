@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { statusLabel, type Project } from "@/data/projects";
+import type { Project } from "@/data/projects";
+import { getDictionary } from "@/i18n/dictionaries";
+import { pick, type Locale } from "@/i18n/config";
 
 const statusStyle: Record<Project["status"], string> = {
   live: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
@@ -8,7 +10,15 @@ const statusStyle: Record<Project["status"], string> = {
   archived: "bg-zinc-500/10 text-fg-subtle",
 };
 
-export function ProjectCard({ project }: { project: Project }) {
+export function ProjectCard({
+  project,
+  locale,
+}: {
+  project: Project;
+  locale: Locale;
+}) {
+  const dict = getDictionary(locale);
+
   return (
     <article className="group relative flex flex-col overflow-hidden rounded-xl border border-border bg-bg-card transition-colors hover:border-accent/50">
       <div className="relative aspect-[16/9] overflow-hidden bg-bg-subtle">
@@ -26,29 +36,39 @@ export function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-5">
-        <div className="flex items-center gap-2">
-          <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusStyle[project.status]}`}>
-            {statusLabel[project.status]}
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusStyle[project.status]}`}
+          >
+            {dict.projects.status[project.status]}
           </span>
           <span className="font-mono text-xs text-fg-subtle">{project.year}</span>
           {project.downloads && (
             <span className="font-mono text-xs text-fg-subtle">
-              · {project.downloads} lượt tải
+              · {project.downloads} {dict.projects.downloads}
             </span>
           )}
         </div>
 
         <h3 className="text-lg font-semibold tracking-tight">
-          <Link href={`/projects/${project.slug}`} className="after:absolute after:inset-0">
+          <Link
+            href={`/${locale}/projects/${project.slug}`}
+            className="after:absolute after:inset-0"
+          >
             {project.title}
           </Link>
         </h3>
 
-        <p className="flex-1 text-sm leading-relaxed text-fg-muted">{project.summary}</p>
+        <p className="flex-1 text-sm leading-relaxed text-fg-muted">
+          {pick(project.summary, locale)}
+        </p>
 
         <ul className="flex flex-wrap gap-1.5 pt-1">
           {project.tech.slice(0, 4).map((t) => (
-            <li key={t} className="rounded-md bg-bg-subtle px-2 py-1 font-mono text-xs text-fg-muted">
+            <li
+              key={t}
+              className="rounded-md bg-bg-subtle px-2 py-1 font-mono text-xs text-fg-muted"
+            >
               {t}
             </li>
           ))}
@@ -79,7 +99,7 @@ function CardArt({ title, icon }: { title: string; icon?: string }) {
       <div className="relative grid size-full place-items-center">
         <Image
           src={icon}
-          alt={`Icon ứng dụng ${title}`}
+          alt={title}
           width={160}
           height={160}
           className="size-20 rounded-[22%] shadow-xl ring-1 ring-black/10 transition-transform duration-500 group-hover:scale-110"

@@ -1,6 +1,8 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
+import { getDictionary } from "@/i18n/dictionaries";
+import type { Locale } from "@/i18n/config";
 
 /** Theo dõi class "dark" trên <html> — nguồn sự thật nằm ở DOM, do script trong layout đặt. */
 function subscribe(onChange: () => void) {
@@ -14,8 +16,9 @@ function subscribe(onChange: () => void) {
 
 const isDark = () => document.documentElement.classList.contains("dark");
 
-export function ThemeToggle() {
+export function ThemeToggle({ locale }: { locale: Locale }) {
   const dark = useSyncExternalStore(subscribe, isDark, () => false);
+  const dict = getDictionary(locale);
 
   function toggle() {
     const next = !dark;
@@ -31,7 +34,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={dark ? "Chuyển sang giao diện sáng" : "Chuyển sang giao diện tối"}
+      aria-label={dark ? dict.theme.toLight : dict.theme.toDark}
       className="grid size-9 place-items-center rounded-lg border border-border text-fg-muted transition-colors hover:bg-bg-subtle hover:text-fg"
     >
       {dark ? <SunIcon /> : <MoonIcon />}
