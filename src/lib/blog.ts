@@ -13,6 +13,8 @@ export type PostMeta = {
   description: string;
   date: string;
   tags: string[];
+  /** Link tới bản gốc, ví dụ bài đăng trên LinkedIn. */
+  source?: string;
 };
 
 export type Post = PostMeta & { html: string };
@@ -31,6 +33,7 @@ function parse(file: string) {
     description: String(data.description ?? ""),
     date: String(data.date ?? ""),
     tags: Array.isArray(data.tags) ? data.tags.map(String) : [],
+    source: data.source ? String(data.source) : undefined,
   };
   return { meta, content };
 }

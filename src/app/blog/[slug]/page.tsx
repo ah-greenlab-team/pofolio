@@ -53,6 +53,23 @@ export default async function PostPage({ params }: Params) {
         className="prose-post mx-auto mt-10 max-w-2xl"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
+
+      {post.source && (
+        <footer className="mx-auto mt-12 max-w-2xl border-t border-border pt-6">
+          <p className="text-sm text-fg-muted">
+            Bài viết này được đăng lần đầu trên{" "}
+            <a
+              href={post.source}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="text-accent underline-offset-4 hover:underline"
+            >
+              LinkedIn
+            </a>
+            .
+          </p>
+        </footer>
+      )}
     </article>
   );
 }
