@@ -43,9 +43,20 @@ export default async function ProjectPage({ params }: Params) {
             </>
           )}
         </div>
-        <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-          {project.title}
-        </h1>
+        <div className="mt-3 flex items-center gap-4">
+          {project.icon && (
+            <Image
+              src={project.icon}
+              alt={`Icon ứng dụng ${project.title}`}
+              width={144}
+              height={144}
+              className="size-16 shrink-0 rounded-[22%] shadow-lg ring-1 ring-black/10 sm:size-20"
+            />
+          )}
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            {project.title}
+          </h1>
+        </div>
         <p className="mt-4 text-lg leading-relaxed text-fg-muted">{project.summary}</p>
 
         <div className="mt-6 flex flex-wrap gap-3">

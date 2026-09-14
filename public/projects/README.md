@@ -1,7 +1,19 @@
-Đặt ảnh screenshot của từng ứng dụng vào thư mục này.
+Thư mục chứa hình ảnh của các ứng dụng.
 
-Ví dụ: lưu file `taskflow.png` rồi khai báo trong `src/data/projects.ts`:
+## Icon app (đang dùng)
 
-    image: "/projects/taskflow.png"
+Ảnh vuông, khai báo bằng trường `icon` trong `src/data/projects.ts`:
 
-Tỉ lệ khuyến nghị: 16:9 (ví dụ 1600×900). Nếu bỏ trống, card sẽ tự hiện ảnh gradient.
+    icon: "/projects/ten-app.png"
+
+Icon sẽ hiện ở giữa nền gradient trên card, và cạnh tiêu đề ở trang chi tiết.
+Kích thước khuyến nghị: 512×512. Các icon hiện có được tải từ Google Play.
+
+## Ảnh bìa (tuỳ chọn)
+
+Nếu muốn dùng ảnh chụp màn hình thay cho nền gradient, khai báo thêm `image`:
+
+    image: "/projects/ten-app-cover.png"
+
+Khi có `image`, ảnh này sẽ phủ kín card thay cho gradient + icon.
+Tỉ lệ khuyến nghị: 16:9 (ví dụ 1600×900).

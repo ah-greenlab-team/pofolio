@@ -43,7 +43,9 @@ Mở `src/data/projects.ts` và thêm một object vào mảng `projects`:
   demoUrl: "https://play.google.com/store/apps/details?id=...",  // tuỳ chọn
   demoLabel: "Xem tài liệu",  // tuỳ chọn, mặc định "Tải trên Google Play"
   repoUrl: "https://github.com/...",  // tuỳ chọn
-  image: "/projects/ten-app.png",     // tuỳ chọn, xem public/projects/
+  downloads: "10K+",                  // tuỳ chọn, số lượt tải trên Play
+  icon: "/projects/ten-app.png",      // tuỳ chọn, icon vuông 512×512
+  image: "/projects/ten-app-cover.png", // tuỳ chọn, ảnh bìa 16:9
   highlights: ["Điểm nổi bật 1", "Điểm nổi bật 2"],
 }
 ```

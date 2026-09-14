@@ -21,7 +21,7 @@ export function ProjectCard({ project }: { project: Project }) {
             className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <PlaceholderArt title={project.title} />
+          <CardArt title={project.title} icon={project.icon} />
         )}
       </div>
 
@@ -58,8 +58,8 @@ export function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-/** Ảnh gradient sinh sẵn cho project chưa có screenshot. */
-function PlaceholderArt({ title }: { title: string }) {
+/** Nền gradient sinh theo tên app, đặt icon ở giữa nếu có. */
+function CardArt({ title, icon }: { title: string; icon?: string }) {
   const hue = [...title].reduce((acc, c) => acc + c.charCodeAt(0), 0) % 360;
   return (
     <div
@@ -67,11 +67,20 @@ function PlaceholderArt({ title }: { title: string }) {
       style={{
         background: `linear-gradient(135deg, hsl(${hue} 70% 60% / 0.25), hsl(${(hue + 60) % 360} 70% 50% / 0.15))`,
       }}
-      aria-hidden="true"
     >
-      <span className="font-mono text-3xl font-bold text-fg/25">
-        {title.slice(0, 2).toUpperCase()}
-      </span>
+      {icon ? (
+        <Image
+          src={icon}
+          alt={`Icon ứng dụng ${title}`}
+          width={112}
+          height={112}
+          className="size-20 rounded-[22%] shadow-lg ring-1 ring-black/10 transition-transform duration-500 group-hover:scale-110"
+        />
+      ) : (
+        <span className="font-mono text-3xl font-bold text-fg/25" aria-hidden="true">
+          {title.slice(0, 2).toUpperCase()}
+        </span>
+      )}
     </div>
   );
 }
