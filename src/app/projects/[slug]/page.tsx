@@ -36,6 +36,12 @@ export default async function ProjectPage({ params }: Params) {
           <span className="font-mono">{project.year}</span>
           <span aria-hidden="true">·</span>
           <span>{statusLabel[project.status]}</span>
+          {project.downloads && (
+            <>
+              <span aria-hidden="true">·</span>
+              <span>{project.downloads} lượt tải trên Google Play</span>
+            </>
+          )}
         </div>
         <h1 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
           {project.title}

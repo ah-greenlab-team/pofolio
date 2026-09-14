@@ -16,8 +16,8 @@ export default function ProjectsPage() {
         </p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">Ứng dụng</h1>
         <p className="mt-3 leading-relaxed text-fg-muted">
-          Tất cả dự án tôi đã và đang xây dựng, từ sản phẩm đang chạy thật đến những
-          thử nghiệm nhỏ cuối tuần.
+          Các ứng dụng Android tôi đã phát hành trên Google Play. Bấm vào từng app
+          để xem bài toán tôi giải quyết và cách tôi xây dựng nó.
         </p>
       </header>
 

@@ -31,6 +31,11 @@ export function ProjectCard({ project }: { project: Project }) {
             {statusLabel[project.status]}
           </span>
           <span className="font-mono text-xs text-fg-subtle">{project.year}</span>
+          {project.downloads && (
+            <span className="font-mono text-xs text-fg-subtle">
+              · {project.downloads} lượt tải
+            </span>
+          )}
         </div>
 
         <h3 className="text-lg font-semibold tracking-tight">

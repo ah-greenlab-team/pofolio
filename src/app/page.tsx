@@ -17,7 +17,7 @@ export default function Home() {
         id="projects"
         eyebrow="Sản phẩm"
         title="Ứng dụng tôi đã xây"
-        description="Một vài dự án tiêu biểu. Mỗi dự án đều có trang chi tiết mô tả bài toán và cách tôi giải quyết."
+        description="Một vài ứng dụng tiêu biểu đang có mặt trên Google Play. Mỗi app đều có trang chi tiết mô tả bài toán và cách tôi giải quyết."
       >
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {featuredProjects.map((p) => (

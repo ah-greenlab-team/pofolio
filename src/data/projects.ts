@@ -2,6 +2,9 @@
  * Danh sách ứng dụng / dự án.
  * Thêm một object mới vào mảng `projects` là có ngay card ở trang chủ
  * và một trang chi tiết tại /projects/<slug>.
+ *
+ * LƯU Ý: trường `tech` của các app dưới đây được suy ra từ mô tả trên
+ * Google Play. Hãy kiểm tra lại và sửa cho đúng với stack thật bạn dùng.
  */
 
 export type Project = {
@@ -13,6 +16,8 @@ export type Project = {
   year: string;
   status: "live" | "wip" | "archived";
   featured?: boolean;
+  /** Số lượt cài đặt hiển thị trên Google Play, ví dụ "10K+". */
+  downloads?: string;
   /** Link tải app — thường là Google Play. */
   demoUrl?: string;
   /** Nhãn của nút tải. Mặc định: "Tải trên Google Play". */
@@ -25,83 +30,93 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "habit-loop",
-    title: "HabitLoop",
+    slug: "ah-vpn",
+    title: "AH VPN — Fast VPN Secure Proxy",
     summary:
-      "Ứng dụng theo dõi thói quen với widget màn hình chính, nhắc nhở thông minh và biểu đồ chuỗi ngày.",
+      "Ứng dụng VPN kết nối một chạm, không cần đăng ký, với hệ thống máy chủ trải khắp Mỹ, châu Âu và châu Á.",
     description: [
-      "HabitLoop ra đời vì tôi cần một app theo dõi thói quen đủ nhẹ để mở lên là đánh dấu xong trong hai giây. Toàn bộ giao diện viết bằng Jetpack Compose, dữ liệu lưu cục bộ bằng Room nên app chạy hoàn toàn offline.",
-      "Phần nhắc nhở dùng WorkManager kết hợp AlarmManager để đảm bảo thông báo vẫn đến đúng giờ kể cả khi hệ thống đang ở chế độ tiết kiệm pin. Widget màn hình chính được dựng bằng Glance.",
+      "AH VPN được xây dựng quanh một mục tiêu duy nhất: người dùng mở app lên, chạm một lần là có kết nối an toàn. Không đăng ký tài khoản, không cấu hình phức tạp — hệ thống tự chọn máy chủ tốt nhất đang sẵn sàng.",
+      "App hỗ trợ mạng WiFi, 4G, 5G và LTE với băng thông không giới hạn, đồng thời tích hợp mua hàng trong ứng dụng cho gói nâng cao. Đây là sản phẩm có lượng cài đặt lớn nhất của tôi trên Google Play.",
     ],
-    tech: ["Kotlin", "Jetpack Compose", "Room", "Hilt", "WorkManager", "Glance"],
-    year: "2025",
+    tech: ["Kotlin", "Android VpnService", "In-app Purchases", "AdMob"],
+    year: "2026",
     status: "live",
     featured: true,
-    demoUrl: "https://play.google.com/store/apps/details?id=com.example.habitloop",
-    repoUrl: "https://github.com/ah-greenlab-team/habitloop",
+    downloads: "10K+",
+    demoUrl:
+      "https://play.google.com/store/apps/details?id=ahgreen.fast.unlimited.vpn.unblockproxy.securevpn",
     highlights: [
-      "Hoạt động hoàn toàn offline",
-      "Widget màn hình chính viết bằng Glance",
-      "Nhắc nhở đúng giờ kể cả khi tiết kiệm pin",
+      "Kết nối một chạm, không cần tài khoản",
+      "Máy chủ ở Mỹ, Anh, châu Âu, Nhật, Singapore, Ấn Độ, Hồng Kông, Úc",
+      "Tự động chọn máy chủ tốt nhất",
+      "Băng thông không giới hạn",
     ],
   },
   {
-    slug: "snap-note",
-    title: "SnapNote",
+    slug: "wifi-nearby",
+    title: "WiFi Nearby — WiFi Hotspot Map",
     summary:
-      "App ghi chú nhanh, hỗ trợ quick tile và chia sẻ từ ứng dụng khác, đồng bộ qua Firebase.",
+      "Bản đồ tương tác giúp tìm điểm phát WiFi xung quanh, kèm trình quét mạng và tự động kết nối lại.",
     description: [
-      "SnapNote giúp lưu lại ý tưởng trong vài giây: kéo thanh thông báo, chạm quick settings tile, gõ, xong. Người dùng cũng có thể chia sẻ văn bản hoặc ảnh từ bất kỳ app nào vào thẳng SnapNote.",
-      "Dữ liệu lưu cục bộ trước rồi đồng bộ nền lên Firestore, nên thao tác ghi chú không bao giờ phải chờ mạng. Xung đột khi sửa trên nhiều thiết bị được giải quyết theo thời điểm chỉnh sửa sau cùng.",
+      "WiFi Nearby hiển thị các điểm phát WiFi quanh vị trí người dùng trên một bản đồ thời gian thực, giúp họ tìm được kết nối ổn định khi đang di chuyển — ở quán cà phê, sân bay, khách sạn hay nơi công cộng.",
+      "Ngoài bản đồ, app có trình quét mạng hiển thị cường độ tín hiệu và thông tin SSID/BSSID để người dùng cân nhắc trước khi kết nối, cùng danh sách yêu thích, lịch sử kết nối và thông báo khi đi ngang một điểm phát khả dụng.",
     ],
-    tech: ["Kotlin", "Jetpack Compose", "Firebase", "Coroutines", "DataStore"],
-    year: "2025",
+    tech: ["Kotlin", "WifiManager", "Google Maps SDK", "Location Services"],
+    year: "2026",
     status: "live",
     featured: true,
-    demoUrl: "https://play.google.com/store/apps/details?id=com.example.snapnote",
-    repoUrl: "https://github.com/ah-greenlab-team/snapnote",
+    downloads: "10K+",
+    demoUrl: "https://play.google.com/store/apps/details?id=com.ahgreen.wifi",
     highlights: [
-      "Quick settings tile để ghi chú tức thì",
-      "Nhận nội dung chia sẻ từ app khác",
-      "Ghi cục bộ trước, đồng bộ nền sau",
+      "Bản đồ điểm phát WiFi theo thời gian thực",
+      "Quét mạng kèm cường độ tín hiệu và SSID/BSSID",
+      "Tự động kết nối lại mạng đã tin cậy",
+      "Danh sách yêu thích, lịch sử và chế độ tối",
     ],
   },
   {
-    slug: "fit-track",
-    title: "FitTrack",
+    slug: "shimeji-pet",
+    title: "Shimeji Pet — Anime Pet",
     summary:
-      "Ứng dụng ghi lại buổi tập, đọc dữ liệu bước chân và nhịp tim từ Health Connect.",
+      "Thú cưng anime chạy nhảy ngay trên màn hình điện thoại, có hệ thống trồng cây, cho ăn và gacha sưu tầm.",
     description: [
-      "FitTrack tập trung vào việc ghi buổi tập thật nhanh giữa các hiệp: chọn bài, nhập số lần, chuyển hiệp — tất cả trong một màn hình duy nhất, không phải điều hướng qua lại.",
-      "App đọc dữ liệu bước chân và nhịp tim thông qua Health Connect, đồng thời có phiên bản Wear OS đồng hành để điều khiển ngay trên đồng hồ.",
+      "Shimeji Pet đưa những nhân vật anime nhỏ lên lớp overlay phía trên mọi ứng dụng: chúng đi lại, leo trèo, phản ứng khi người dùng chạm hoặc kéo thả. Có thể bật cùng lúc tới sáu nhân vật mà vẫn giữ được hiệu năng mượt và ít hao pin.",
+      "Phần gameplay gồm hệ thống trồng cây — thu hoạch quả — cho thú cưng ăn để tăng cấp và mở khoá hành vi mới, cùng cơ chế gacha để sưu tầm nhân vật hiếm. Người dùng tuỳ chỉnh được kích thước, tốc độ di chuyển và số lượng thú cưng.",
     ],
-    tech: ["Kotlin", "Jetpack Compose", "Health Connect", "Wear OS", "Room"],
-    year: "2024",
-    status: "wip",
+    tech: ["Kotlin", "Overlay Window", "Animation", "AdMob"],
+    year: "2026",
+    status: "live",
     featured: true,
-    repoUrl: "https://github.com/ah-greenlab-team/fittrack",
+    downloads: "100+",
+    demoUrl: "https://play.google.com/store/apps/details?id=com.ahgreenlab.shimeji",
     highlights: [
-      "Ghi cả buổi tập trong một màn hình",
-      "Tích hợp Health Connect",
-      "Có app đồng hành trên Wear OS",
+      "Hiển thị overlay trên mọi ứng dụng",
+      "Tối đa 6 nhân vật cùng lúc, tương tác chạm và kéo thả",
+      "Hệ thống trồng cây, cho ăn và lên cấp",
+      "Gacha sưu tầm nhân vật hiếm",
     ],
   },
   {
-    slug: "compose-charts",
-    title: "ComposeCharts",
+    slug: "bluetooth-device-finder",
+    title: "Bluetooth Device Finder: Radar",
     summary:
-      "Thư viện biểu đồ nhẹ cho Jetpack Compose, không phụ thuộc bên thứ ba.",
+      "Biến điện thoại thành radar dò tín hiệu để tìm tai nghe, đồng hồ hay loa Bluetooth bị thất lạc.",
     description: [
-      "Một thư viện nhỏ tôi tách ra từ dự án cá nhân: vẽ biểu đồ đường, cột và tròn bằng Canvas API của Compose, hỗ trợ animation và chạm để xem chi tiết.",
-      "Mục tiêu là giữ thư viện dưới 60KB và không kéo theo dependency nào, để dự án nào cũng thêm vào được mà không lo phình APK.",
+      "Ứng dụng quét toàn bộ thiết bị Bluetooth và BLE đang phát sóng xung quanh, sắp xếp theo cường độ tín hiệu rồi dẫn người dùng tới thiết bị cần tìm qua bốn bước: quét — chọn — đi theo — tìm thấy. Thanh đo tín hiệu cập nhật liên tục theo các mức Yếu → Trung bình → Mạnh → Rất gần.",
+      "Điểm tôi tâm đắc nhất là phần xử lý tín hiệu: giá trị RSSI thô rất nhiễu, nên tôi làm thêm lớp làm mượt để thanh đo tăng giảm ổn định thay vì nhảy loạn. Tính năng dò hướng sử dụng la bàn của điện thoại để ước lượng phía nào tín hiệu mạnh nhất — là phép đo thật, không phải mũi tên trang trí.",
     ],
-    tech: ["Kotlin", "Jetpack Compose", "Canvas API", "Maven Central"],
-    year: "2024",
+    tech: ["Kotlin", "Bluetooth LE", "Xử lý tín hiệu RSSI", "SensorManager"],
+    year: "2026",
     status: "live",
-    demoUrl: "https://github.com/ah-greenlab-team/compose-charts#readme",
-    demoLabel: "Xem tài liệu",
-    repoUrl: "https://github.com/ah-greenlab-team/compose-charts",
-    highlights: ["Dưới 60KB", "Không dependency", "Animation và tương tác chạm"],
+    downloads: "50+",
+    demoUrl:
+      "https://play.google.com/store/apps/details?id=com.findbluetooth.device.radar",
+    highlights: [
+      "Radar hiển thị thiết bị theo cường độ tín hiệu",
+      "Làm mượt RSSI để chỉ số không nhảy loạn",
+      "Dò hướng bằng la bàn của thiết bị",
+      "Hoạt động hoàn toàn offline, không thu thập dữ liệu",
+    ],
   },
 ];
 
