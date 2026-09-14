@@ -41,10 +41,13 @@ export default function Home() {
         title="Đôi lời về tôi"
       >
         <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr]">
-          <div className="space-y-4 text-fg-muted leading-relaxed">
-            {site.bio.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
+          <div>
+            <div className="space-y-4 leading-relaxed text-fg-muted">
+              {site.bio.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+            <Facts />
           </div>
 
           <div className="space-y-6">
@@ -200,5 +203,36 @@ function Contact() {
         </div>
       </div>
     </Section>
+  );
+}
+
+/** Vài thông tin cơ bản hiển thị dưới phần giới thiệu. */
+function Facts() {
+  const facts = [
+    { label: "Ngày sinh", value: site.birthDate },
+    { label: "Địa điểm", value: site.location },
+    { label: "Email", value: site.email, href: `mailto:${site.email}` },
+    site.phone ? { label: "Điện thoại", value: site.phone, href: `tel:${site.phone}` } : null,
+  ].filter((f) => f !== null);
+
+  return (
+    <dl className="mt-8 grid gap-x-8 gap-y-4 border-t border-border pt-6 sm:grid-cols-2">
+      {facts.map((fact) => (
+        <div key={fact.label}>
+          <dt className="font-mono text-xs uppercase tracking-widest text-fg-subtle">
+            {fact.label}
+          </dt>
+          <dd className="mt-1 text-sm">
+            {fact.href ? (
+              <a href={fact.href} className="text-accent underline-offset-4 hover:underline">
+                {fact.value}
+              </a>
+            ) : (
+              fact.value
+            )}
+          </dd>
+        </div>
+      ))}
+    </dl>
   );
 }

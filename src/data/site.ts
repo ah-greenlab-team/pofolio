@@ -4,7 +4,7 @@
  */
 
 export const site = {
-  name: "Tên của bạn",
+  name: "Đỗ Mạnh Hùng",
   role: "Android Developer",
   tagline:
     "Tôi xây dựng ứng dụng Android bằng Kotlin & Jetpack Compose — từ bản thiết kế đầu tiên đến khi lên Google Play.",
@@ -13,6 +13,8 @@ export const site = {
     "Công việc hằng ngày của tôi xoay quanh Kotlin, Jetpack Compose và kiến trúc MVVM. Ngoài giờ làm, tôi xây các app nhỏ để thử nghiệm API mới của Android và giải quyết những vấn đề mình gặp phải. Tất cả đều được liệt kê ở trang Ứng dụng.",
   ],
   email: "hello@example.com",
+  phone: "",
+  birthDate: "30/07/2002",
   location: "Hà Nội, Việt Nam",
   availableForWork: true,
   url: "https://example.com",

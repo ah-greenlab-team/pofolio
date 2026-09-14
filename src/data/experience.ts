@@ -25,25 +25,19 @@ export type TimelineItem = {
 };
 
 export const timeline: TimelineItem[] = [
+  // TODO: thay bằng nơi làm việc thật của bạn
   {
-    period: "2024 — nay",
+    period: "3/2025 — nay",
     title: "Android Developer",
-    org: "Công ty ABC",
+    org: "Tên công ty",
     description:
-      "Phát triển và bảo trì ứng dụng Android có hàng trăm nghìn lượt cài đặt. Phụ trách chuyển dần giao diện cũ sang Jetpack Compose và tối ưu thời gian khởi động.",
+      "Mô tả ngắn về công việc bạn đang làm: sản phẩm phụ trách, công nghệ sử dụng và kết quả nổi bật.",
   },
   {
-    period: "2022 — 2024",
-    title: "Junior Android Developer",
-    org: "Công ty XYZ",
+    period: "10/2020 — 3/2025",
+    title: "Kỹ sư Công nghệ thông tin",
+    org: "Trường Đại học Mở Hà Nội",
     description:
-      "Xây dựng tính năng cho app thương mại điện tử: giỏ hàng, thanh toán, thông báo đẩy. Viết unit test và UI test cho các luồng chính.",
-  },
-  {
-    period: "2018 — 2022",
-    title: "Cử nhân Công nghệ thông tin",
-    org: "Đại học DEF",
-    description:
-      "Chuyên ngành Kỹ thuật phần mềm. Đồ án tốt nghiệp là ứng dụng Android hỗ trợ học từ vựng theo phương pháp lặp lại ngắt quãng.",
+      "Tốt nghiệp chuyên ngành Công nghệ thông tin. Trong thời gian học, tôi tập trung vào lập trình di động và bắt đầu xây dựng các ứng dụng Android đầu tiên.",
   },
 ];
