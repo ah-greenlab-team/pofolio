@@ -58,8 +58,39 @@ export function ProjectCard({ project }: { project: Project }) {
   );
 }
 
-/** Nền gradient sinh theo tên app, đặt icon ở giữa nếu có. */
+/**
+ * Nền của card: dùng chính icon app phóng to và làm mờ, nên màu nền
+ * luôn khớp với icon. App chưa có icon thì rơi về gradient sinh theo tên.
+ */
 function CardArt({ title, icon }: { title: string; icon?: string }) {
+  if (!icon) return <GradientArt title={title} />;
+
+  return (
+    <div className="relative size-full overflow-hidden">
+      <Image
+        src={icon}
+        alt=""
+        aria-hidden="true"
+        fill
+        sizes="(max-width: 768px) 100vw, 33vw"
+        className="scale-150 object-cover blur-2xl saturate-150"
+      />
+      <div className="absolute inset-0 bg-white/20 dark:bg-black/35" />
+      <div className="relative grid size-full place-items-center">
+        <Image
+          src={icon}
+          alt={`Icon ứng dụng ${title}`}
+          width={160}
+          height={160}
+          className="size-20 rounded-[22%] shadow-xl ring-1 ring-black/10 transition-transform duration-500 group-hover:scale-110"
+        />
+      </div>
+    </div>
+  );
+}
+
+/** Ảnh gradient sinh theo tên, dùng khi app chưa có icon. */
+function GradientArt({ title }: { title: string }) {
   const hue = [...title].reduce((acc, c) => acc + c.charCodeAt(0), 0) % 360;
   return (
     <div
@@ -68,19 +99,9 @@ function CardArt({ title, icon }: { title: string; icon?: string }) {
         background: `linear-gradient(135deg, hsl(${hue} 70% 60% / 0.25), hsl(${(hue + 60) % 360} 70% 50% / 0.15))`,
       }}
     >
-      {icon ? (
-        <Image
-          src={icon}
-          alt={`Icon ứng dụng ${title}`}
-          width={112}
-          height={112}
-          className="size-20 rounded-[22%] shadow-lg ring-1 ring-black/10 transition-transform duration-500 group-hover:scale-110"
-        />
-      ) : (
-        <span className="font-mono text-3xl font-bold text-fg/25" aria-hidden="true">
-          {title.slice(0, 2).toUpperCase()}
-        </span>
-      )}
+      <span className="font-mono text-3xl font-bold text-fg/25" aria-hidden="true">
+        {title.slice(0, 2).toUpperCase()}
+      </span>
     </div>
   );
 }
