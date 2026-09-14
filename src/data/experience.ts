@@ -5,7 +5,7 @@ export type SkillGroup = { title: string; items: string[] };
 export const skillGroups: SkillGroup[] = [
   {
     title: "Ngôn ngữ & UI",
-    items: ["Kotlin", "Java", "Jetpack Compose", "XML Layout", "Material 3"],
+    items: ["Kotlin", "Java", "Jetpack Compose", "XML Layout", "Material 3", "Flutter"],
   },
   {
     title: "Android & Kiến trúc",
@@ -15,23 +15,50 @@ export const skillGroups: SkillGroup[] = [
     title: "Backend & Công cụ",
     items: ["Retrofit", "Firebase", "Gradle", "Git", "CI/CD", "Play Console"],
   },
+  {
+    title: "Kỹ năng khác",
+    items: ["Business Analysis", "Quality Control", "Team Development"],
+  },
 ];
 
 export type TimelineItem = {
   period: string;
   title: string;
   org: string;
+  /** Tuỳ chọn: hình thức làm việc, ví dụ "Toàn thời gian". */
+  type?: string;
+  location?: string;
   description: string;
 };
 
 export const timeline: TimelineItem[] = [
-  // TODO: thay bằng nơi làm việc thật của bạn
   {
-    period: "3/2025 — nay",
+    period: "8/2025 — nay",
     title: "Android Developer",
-    org: "Tên công ty",
+    org: "Amobear Vietnam",
+    type: "Toàn thời gian",
+    location: "Định Công, Hà Nội",
+    // TODO: bổ sung sản phẩm bạn đang phụ trách và kết quả nổi bật
     description:
-      "Mô tả ngắn về công việc bạn đang làm: sản phẩm phụ trách, công nghệ sử dụng và kết quả nổi bật.",
+      "Phát triển ứng dụng Android cho các sản phẩm của công ty, sử dụng Kotlin và Jetpack Compose.",
+  },
+  {
+    period: "5/2024 — 5/2025",
+    title: "Android Developer — Business Analysis",
+    org: "Medi Pharm Việt Nam",
+    type: "Toàn thời gian",
+    location: "Việt Nam",
+    description:
+      "Mô tả ứng dụng và xác định các chức năng cần xây dựng. Tham gia trực tiếp vào quá trình phát triển và dựng nền tảng ứng dụng cho Android.",
+  },
+  {
+    period: "4/2022 — 9/2022",
+    title: "Android Developer",
+    org: "Công ty TNHH MTG Technology",
+    type: "Bán thời gian",
+    location: "Hà Nội",
+    description:
+      "Tham gia phát triển ứng dụng Android cùng nhóm, phụ trách kiểm thử chất lượng và phối hợp trong quá trình xây dựng sản phẩm.",
   },
   {
     period: "10/2020 — 3/2025",

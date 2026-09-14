@@ -80,6 +80,11 @@ export default function Home() {
               <p className="font-mono text-xs text-fg-subtle">{item.period}</p>
               <h3 className="mt-1 font-semibold">{item.title}</h3>
               <p className="text-sm text-accent">{item.org}</p>
+              {(item.type || item.location) && (
+                <p className="mt-0.5 text-xs text-fg-subtle">
+                  {[item.type, item.location].filter(Boolean).join(" · ")}
+                </p>
+              )}
               <p className="mt-2 text-sm leading-relaxed text-fg-muted">
                 {item.description}
               </p>
