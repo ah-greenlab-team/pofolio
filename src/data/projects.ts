@@ -172,7 +172,7 @@ export const projects: Project[] = [
     tech: ["Kotlin", "Bluetooth LE", "RSSI Signal Processing", "SensorManager"],
     year: "2026",
     status: "live",
-    downloads: "50+",
+    downloads: "100+",
     demoUrl:
       "https://play.google.com/store/apps/details?id=com.findbluetooth.device.radar",
     icon: "/app-icons/bluetooth-device-finder.png",
@@ -188,6 +188,50 @@ export const projects: Project[] = [
         "RSSI smoothing so readings stay steady",
         "Direction finding using the device compass",
         "Fully offline, collects no data",
+      ],
+    },
+  },
+  {
+    slug: "edge-light",
+    title: "Edge Light: Notification Color",
+    summary: {
+      vi: "Biến viền màn hình thành đèn báo, mỗi ứng dụng một màu riêng để biết ai nhắn mà không cần mở máy.",
+      en: "Turns the screen edge into a notification light, with a different colour per app so you know who messaged without waking the phone.",
+    },
+    description: {
+      vi: [
+        "Khi có tin nhắn, cuộc gọi hay lúc cắm sạc, một dải màu chạy quanh viền màn hình. Điểm tôi tập trung nhất — và cũng là thứ phần lớn app cùng loại bỏ qua — là cho phép gán màu riêng cho từng ứng dụng: xanh lá là WhatsApp, cam là Shopee, xanh dương là Zalo. Người dùng tự chọn màu hoặc để app lấy màu từ icon của ứng dụng đó.",
+        "App có 20 hiệu ứng chuyển động, 12 kiểu viền và 39 bộ màu dựng sẵn, cộng thêm trình chỉnh palette bốn điểm màu cho ai muốn tự pha. Toàn bộ cấu hình lưu được thành Scene để đổi bằng một chạm — viền xanh mỏng chạy chậm cho ban đêm, viền lửa dày cho lúc chơi game.",
+        "Phần tôi dành nhiều công nhất lại là lúc đèn tắt: giờ yên lặng, ngưỡng pin tự ngắt, chỉ sáng khi màn hình đã tắt, và app tự ước lượng mức hao pin theo phần trăm mỗi ngày để người dùng biết trước khi bật. App cũng không xin quyền Internet, nên không có gì được gửi đi đâu cả.",
+      ],
+      en: [
+        "When a message, a call or the charger arrives, a band of colour runs around the edge of the display. The part I focused on most — and the part most edge lighting apps skip — is per-app colours: green for WhatsApp, orange for Shopee, blue for Zalo. You pick the colours, or let the app read them from each app icon.",
+        "There are 20 animations, 12 border shapes and 39 colour themes, plus a custom palette editor with four colour stops. Any combination can be saved as a Scene and switched in one tap — a thin, slow, deep blue border for the night, a thick fire animation for gaming.",
+        "Most of my effort actually went into knowing when to stay off: quiet hours, a battery guard that pauses below a level you set, an only-while-the-screen-is-off mode, and an estimate of the battery cost in percent per day shown before you commit. The app requests no internet permission at all, so nothing leaves the device.",
+      ],
+    },
+    tech: ["Kotlin", "Overlay Window", "NotificationListenerService", "Material You"],
+    year: "2026",
+    status: "live",
+    demoUrl:
+      "https://play.google.com/store/apps/details?id=com.ahgreenlab.edgelighting.borderlight",
+    icon: "/app-icons/edge-light.png",
+    highlights: {
+      vi: [
+        "Gán màu riêng cho từng ứng dụng, hoặc lấy màu từ icon",
+        "20 hiệu ứng, 12 kiểu viền, 39 bộ màu và palette tự pha",
+        "Scene lưu trọn cấu hình, đổi bằng một chạm",
+        "Giờ yên lặng, ngưỡng pin và ước lượng hao pin mỗi ngày",
+        "Vẽ đúng theo tai thỏ, nốt ruồi hay màn hình cong",
+        "Không xin quyền Internet",
+      ],
+      en: [
+        "A colour per app, or read from the app icon",
+        "20 animations, 12 border shapes, 39 themes and a custom palette",
+        "Scenes save a whole look and switch in one tap",
+        "Quiet hours, battery guard and a daily battery estimate",
+        "Drawn to the real shape of a notch, punch hole or curved edge",
+        "Requests no internet permission",
       ],
     },
   },
