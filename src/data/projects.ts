@@ -134,7 +134,7 @@ export const projects: Project[] = [
     year: "2026",
     status: "live",
     featured: true,
-    downloads: "100+",
+    downloads: "500+",
     demoUrl: "https://play.google.com/store/apps/details?id=com.ahgreenlab.shimeji",
     icon: "/app-icons/shimeji-pet.jpg",
     highlights: {
@@ -213,6 +213,7 @@ export const projects: Project[] = [
     tech: ["Kotlin", "Overlay Window", "NotificationListenerService", "Material You"],
     year: "2026",
     status: "live",
+    downloads: "100+",
     demoUrl:
       "https://play.google.com/store/apps/details?id=com.ahgreenlab.edgelighting.borderlight",
     icon: "/app-icons/edge-light.png",
@@ -232,6 +233,91 @@ export const projects: Project[] = [
         "Quiet hours, battery guard and a daily battery estimate",
         "Drawn to the real shape of a notch, punch hole or curved edge",
         "Requests no internet permission",
+      ],
+    },
+  },
+  {
+    slug: "astralune",
+    title: "Astralune — Tarot & Astrology",
+    summary: {
+      vi: "Tarot, chiêm tinh và thần số học gộp trong một app: rút bài hằng ngày, xem tử vi, dựng bản đồ sao từ ngày giờ nơi sinh.",
+      en: "Tarot, astrology and numerology in one app: a daily card, today's horoscope, and a natal chart built from your birth date, time and place.",
+    },
+    description: {
+      vi: [
+        "Astralune gom ba mảng vốn thường nằm rải rác ở nhiều app — tarot, chiêm tinh và thần số học — vào một giao diện tĩnh lặng, không cần tạo tài khoản. Người dùng xáo bài rút lá của ngày, trải ba lá quá khứ — hiện tại — tương lai, và tra đủ 78 lá với nghĩa xuôi lẫn nghĩa ngược.",
+        "Phần chiêm tinh có tử vi ngày, tuần, tháng cho cả 12 cung, kèm bầu trời hôm nay: pha Mặt Trăng, vị trí các hành tinh và những hành tinh đang nghịch hành. Bản đồ sao được tính từ ngày, giờ và nơi sinh, ra đủ hành tinh, cung nhà và các góc chiếu.",
+        "Thần số học tính đường đời, biểu đạt, linh hồn, nhân cách, số sinh nhật, số trưởng thành, nợ nghiệp, các đỉnh cao và thử thách, cùng số năm — tháng — ngày cá nhân. Có thể thêm hồ sơ cho người thân để xem riêng từng người. Mọi thông tin ngày sinh chỉ nằm trên máy, không tài khoản, không đăng nhập.",
+      ],
+      en: [
+        "Astralune brings together three things usually scattered across separate apps — tarot, astrology and numerology — in one calm interface that needs no account. You shuffle and draw the card of the day, lay a past–present–future spread, and browse all 78 cards with both upright and reversed meanings.",
+        "The astrology side covers daily, weekly and monthly horoscopes for all twelve signs, plus today's sky: the Moon phase, planet positions and which planets are in retrograde. The natal chart is calculated from birth date, time and place, with planets, houses and aspects.",
+        "Numerology computes life path, expression, soul urge and personality numbers, the birthday and maturity numbers, karmic debt, pinnacles and challenges, and personal year, month and day. Profiles can be added for family and friends so each person gets their own reading. Birth details stay on the device — no account, no sign-in.",
+      ],
+    },
+    tech: ["Kotlin", "Jetpack Compose", "Room", "WorkManager", "In-app Purchases"],
+    year: "2026",
+    status: "live",
+    demoUrl: "https://play.google.com/store/apps/details?id=com.astralune.tarot.astrology",
+    icon: "/app-icons/astralune.png",
+    highlights: {
+      vi: [
+        "Đủ 78 lá tarot với nghĩa xuôi và nghĩa ngược, có lịch sử rút bài",
+        "Bản đồ sao tính từ ngày, giờ và nơi sinh",
+        "Thần số học đầy đủ: đường đời, nợ nghiệp, đỉnh cao và thử thách",
+        "Nhiều hồ sơ cho người thân, mỗi người một kết quả riêng",
+        "Bốn ngôn ngữ: Anh, Tây Ban Nha, Bồ Đào Nha, Việt",
+        "Dữ liệu ngày sinh chỉ lưu trên máy",
+      ],
+      en: [
+        "All 78 tarot cards with upright and reversed meanings, plus draw history",
+        "Natal chart calculated from birth date, time and place",
+        "Full numerology: life path, karmic debt, pinnacles and challenges",
+        "Multiple profiles so family and friends each get their own reading",
+        "Four languages: English, Spanish, Portuguese and Vietnamese",
+        "Birth details never leave the device",
+      ],
+    },
+  },
+  {
+    slug: "ahaha-insect-prank",
+    title: "AHaha Insect Prank Face Filter",
+    summary: {
+      vi: "App camera hiệu ứng: côn trùng 3D bò trên mặt, bộ lọc khuôn mặt vui nhộn và Time Warp Scan, quay lại rồi lưu video.",
+      en: "A camera effects app: 3D insects crawling across your face, funny face filters and Time Warp Scan, with recording and saving built in.",
+    },
+    description: {
+      vi: [
+        "AHaha xoay quanh một ý đơn giản: bắt lại phản ứng thật của người đối diện. Những con côn trùng 3D được gắn theo khuôn mặt và bò qua màn hình như thật, xem trước trực tiếp qua camera trước khi bấm quay. Đây là mô phỏng hình ảnh, không có con vật thật nào.",
+        "Ngoài bộ lọc côn trùng còn có các hiệu ứng khuôn mặt vui nhộn và Time Warp Scan — vạch quét chạy qua khung hình, người dùng giữ nguyên tư thế hoặc cử động để tạo ra hình méo theo ý mình. Kết quả phụ thuộc vào nhịp tay và cách di chuyển nên mỗi lần quay lại ra một kiểu khác.",
+        "Phần quay dựng sẵn trong app: đổi camera trước sau, xem trước hiệu ứng, chọn nhạc nền hoặc thu tiếng qua micro, phát lại và tua để xem kỹ trước khi lưu về máy.",
+      ],
+      en: [
+        "AHaha is built around one simple idea: catching a genuine reaction. The 3D insects track the face and crawl across the screen convincingly, previewed live through the camera before you hit record. The effects are visual simulations — no real creatures involved.",
+        "Beyond the insect filters there are funny face effects and Time Warp Scan, where a scan line sweeps the frame and you either hold a pose or move to stretch the result. Because the outcome depends on your timing and movement, every take comes out differently.",
+        "Recording is built in: switch between front and rear camera, preview the effect, pick a music track or capture your voice through the microphone, then play back and scrub through the clip before saving it to the device.",
+      ],
+    },
+    tech: ["Kotlin", "CameraX", "Face Detection", "OpenGL ES", "MediaRecorder"],
+    year: "2026",
+    status: "live",
+    demoUrl:
+      "https://play.google.com/store/apps/details?id=com.insect.prank.face.filter.camera",
+    icon: "/app-icons/ahaha-insect-prank.png",
+    highlights: {
+      vi: [
+        "Côn trùng 3D bám theo khuôn mặt theo thời gian thực",
+        "Time Warp Scan với vạch quét tạo hình méo",
+        "Xem trước hiệu ứng trực tiếp trước khi quay",
+        "Nhạc nền hoặc thu tiếng qua micro",
+        "Phát lại, tua và lưu video về máy",
+      ],
+      en: [
+        "3D insects tracked to the face in real time",
+        "Time Warp Scan with a sweeping scan line",
+        "Live preview of every effect before recording",
+        "Background music or voice captured through the microphone",
+        "Play back, scrub and save clips to the device",
       ],
     },
   },

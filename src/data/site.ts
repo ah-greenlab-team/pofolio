@@ -38,7 +38,7 @@ export const site = {
     { label: "GitHub", href: "https://github.com/kyata002" },
     {
       label: "Google Play",
-      href: "https://play.google.com/store/apps/dev?id=8921047804864964854",
+      href: "https://play.google.com/store/apps/dev?id=5934600850884488995",
     },
     {
       label: "LinkedIn",
